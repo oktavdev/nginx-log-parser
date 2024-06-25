@@ -24,7 +24,7 @@ class Parser:
 
         previous_time = self.get_save_previous_time(file_time)
 
-        if file_time != previous_time:
+        if file_time != previous_time or not os.path.isfile('shelve.db'):
             with open(file_name, "r") as f:
                 print('Reading file...')
                 log_entries = [self.parse_line(line) for line in f]
