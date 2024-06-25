@@ -78,7 +78,7 @@ class Parser:
 
         return previous_time
 
-    def parse_line(self, line):
+    def parse_line(self, line):  # TODO: Adapt to read Apache log entry as well
         try:
             line = re.sub(r"[\[\]]", "", line)
             data = shlex.split(line)
