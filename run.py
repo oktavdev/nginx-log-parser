@@ -1,24 +1,25 @@
 import argparse
+import os
 import time
 
-from parser import Parser
+import settings
+from parser.log_parser import Parser
 
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='Process log file.')
-    parser.add_argument('log_file', type=str, help='The path to the log file')
-
-    args = parser.parse_args()
-
     start = time.time()
+
+    if not os.path.exists(settings.OUTPUT_DIR):
+        os.makedirs(settings.OUTPUT_DIR)
+
+    arg_parser = argparse.ArgumentParser(description='Process log file.')
+    arg_parser.add_argument('log_file', type=str, help='The path to the log file')
+    arg_parser.add_argument('website_url', nargs='?', type=str, help='The path to the log file')
+    args = arg_parser.parse_args()
+
     parser = Parser()
 
-    LOG_FILE = args.log_file
-
-    EXCEL_FILE = 'access.log.xlsx'
-
     try:
-        data = parser.read_parse_file(LOG_FILE)
+        data = parser.read_parse_file(args.log_file, args.website_url)
     except Exception as e:
         print(f"An error occurred while reading and parsing the file: {e}")
         exit(1)
@@ -30,4 +31,4 @@ if __name__ == '__main__':
     time_elapsed = time.strftime('%H:%M:%S', time.gmtime(end - start))
     print(f"Execution time: {time_elapsed}")
 
-    parser.open_file(EXCEL_FILE)
+    parser.open_file(settings.EXCEL_FILE)

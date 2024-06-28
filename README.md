@@ -1,6 +1,6 @@
 # Nginx access log viewer
 
-I have written this app when stumbled upon the challenge to get some insights from Nginx logs.
+I have written this app when stumbled upon the challenge to get some specific insights from Nginx logs.
 This one is simple yet efficient.
 
 ## What it does
@@ -20,6 +20,6 @@ pip install -r requirements.txt
 ```
 ## How to use
 ```shell
-python run.py {{ nginx_log_file_path }}
+python run.py <access_log_file_path> [website_url_where_robots_txt_is]
 ```
 Example: python run.py ~/Downloads/access.log
