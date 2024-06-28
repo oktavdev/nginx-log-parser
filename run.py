@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     arg_parser = argparse.ArgumentParser(description='Process log file.')
     arg_parser.add_argument('log_file', type=str, help='The path to the log file')
-    arg_parser.add_argument('website_url', nargs='?', type=str, help='The path to the log file')
+    arg_parser.add_argument('website_url', nargs='?', type=str, help='The website where robots.txt is located')
     args = arg_parser.parse_args()
 
     parser = Parser()
